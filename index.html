@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolsa de Trabajo - Macor de México</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #0b3c5d;
+            --secondary-blue: #328cc1;
+            --accent-green: #5cdb95;
+            --accent-orange: #ffb81c;
+            --light-bg: #f5f7fa;
+            --text-dark: #1d2731;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            border-bottom: 5px solid var(--accent-green);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 1.2fr 1fr;
+            }
+        }
+
+        /* Sección de Vacantes y Beneficios */
+        .info-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-green);
+            padding-left: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* ESTILOS NUEVOS PARA LA IMAGEN PUBLICITARIA */
+        .promo-image-container {
+            width: 100%;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 2px solid var(--light-bg);
+        }
+
+        .promo-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .vacante-card {
+            background: var(--light-bg);
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vacante-info h3 {
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+        }
+
+        .vacante-info p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .salary-tag {
+            background: var(--accent-green);
+            color: var(--primary-blue);
+            font-weight: 700;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .beneficio-item {
+            text-align: center;
+            padding: 1rem;
+            background: #fff8eb;
+            border: 1px solid var(--accent-orange);
+            border-radius: 8px;
+        }
+
+        .beneficio-item i {
+            font-size: 1.5rem;
+            color: var(--accent-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .beneficio-item p {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Formulario */
+        .form-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 0 3px rgba(50, 140, 193, 0.2);
+        }
+
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 2rem;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Macor de México</h1>
+        <p><i class="fa-solid fa-gears"></i> Sector Metalmecánico • Monterrey, N.L.</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="info-section">
+            
+            <div class="promo-image-container">
+                <img src="publicidad.jpg" alt="Convocatoria Macor de México" class="promo-image">
+            </div>
+
+            <h2><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #555;">Requisitos generales: Hombres de 18 a 55 años. Turnos rotativos de 8 horas. Se realizan exámenes médicos (no es necesario ayuno).</p>
+            
+            <div class="vacante-card">
+                <div class="vacante-info">
+                    <h3>Ayudante General</h3>
+                    <p>+ Bono de Puntualidad y Asistencia ($420)</p>
+                </div>
+                <div class="salary-tag">$400 / Día</div>
+            </div>
+
+            <div class="vacante-card">
+                <div class="vacante-info">
+                    <h3>Mantenimiento (Ayudante)</h3>
+                    <p>+ Bono de Puntualidad y Asistencia ($440)</p>
+                </div>
+                <div class="salary-tag">$419.95 / Día</div>
+            </div>
+
+            <div class="vacante-card">
+                <div class="vacante-info">
+                    <h3>Operador de CNC</h3>
+                    <p>+ Bono de Puntualidad y Asistencia ($525)</p>
+                </div>
+                <div class="salary-tag">$500 - $600 / Día</div>
+            </div>
+
+            <h2 style="margin-top: 2rem;"><i class="fa-solid fa-gift"></i> Beneficios y Prestaciones</h2>
+            <div class="beneficios-grid">
+                <div class="beneficio-item">
+                    <i class="fa-solid fa-bus"></i>
+                    <p>Apoyo Transporte</p>
+                    <span style="font-size: 0.8rem; font-weight: bold; color: var(--primary-blue);">$175 Diarios</span>
+                </div>
+                <div class="beneficio-item">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                    <p>Bono Permanencia</p>
+                    <span style="font-size: 0.8rem; font-weight: bold; color: var(--primary-blue);">$3,000</span>
+                </div>
+                <div class="beneficio-item">
+                    <i class="fa-solid fa-piggy-bank"></i>
+                    <p>Fondo de Ahorro</p>
+                    <span style="font-size: 0.8rem; font-weight: bold; color: var(--primary-blue);">6.6%</span>
+                </div>
+                <div class="beneficio-item">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <p>Prestaciones de Ley</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2><i class="fa-solid fa-id-card"></i> Postúlate Aquí</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: #555;">Completa tus datos para agendar una entrevista inmediatamente.</p>
+            
+            <form id="postulaForm">
+                <div class="form-group">
+                    <label for="puesto">Puesto de Interés:</label>
+                    <select id="puesto" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="Ayudante General">Ayudante General</option>
+                        <option value="Mantenimiento">Mantenimiento</option>
+                        <option value="Operador de CNC">Operador de CNC</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="curp">CURP:</label>
+                    <input type="text" id="curp" placeholder="18 caracteres" maxlength="18" style="text-transform: uppercase;" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edad">Edad:</label>
+                    <input type="number" id="edad" min="18" max="55" placeholder="Ej. 25" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="escolaridad">Escolaridad:</label>
+                    <select id="escolaridad" required>
+                        <option value="" disabled selected>Selecciona tu nivel</option>
+                        <option value="Primaria">Primaria</option>
+                        <option value="Secundaria">Secundaria</option>
+                        <option value="Preparatoria / Técnica">Preparatoria / Técnica</option>
+                        <option value="Superior">Superior</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="contacto">Número de Contacto:</label>
+                    <input type="tel" id="contacto" placeholder="Tu teléfono a 10 dígitos" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="municipio">Municipio donde radica:</label>
+                    <input type="text" id="municipio" placeholder="Ej. Monterrey, Apodaca, etc." required>
+                </div>
+
+                <button type="submit" class="btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> Enviar Datos por WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <p>*Esta es una oferta de empleo real, sujeta a restricciones, disponibilidad y al perfil del candidato. Pago por medio de Santander y BanRegio. Semana desfasada.</p>
+    </div>
+
+    <script>
+        document.getElementById('postulaForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+
+            // Número del reclutador obtenido del documento
+            const numeroReclutador = "526461974763"; 
+
+            // Recolección de los valores del formulario
+            const puesto = document.getElementById('puesto').value;
+            const nombre = document.getElementById('nombre').value;
+            const curp = document.getElementById('curp').value.toUpperCase();
+            const edad = document.getElementById('edad').value;
+            const escolaridad = document.getElementById('escolaridad').value;
+            const contacto = document.getElementById('contacto').value;
+            const municipio = document.getElementById('municipio').value;
+
+            // Construcción del mensaje formateado para WhatsApp
+            const mensaje = `¡Hola! Me interesa la vacante de *${puesto}* en Macor de México. Aquí te comparto mis datos para agendar entrevista:%0A%0A` +
+                            `*Nombre:* ${nombre}%0A` +
+                            `*CURP:* ${curp}%0A` +
+                            `*Edad:* ${edad} años%0A` +
+                            `*Escolaridad:* ${escolaridad}%0A` +
+                            `*Contacto:* ${contacto}%0A` +
+                            `*Municipio:* ${municipio}`;
+
+            // URL de la API de WhatsApp
+            const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroReclutador}&text=${mensaje}`;
+
+            // Abrir la ventana de WhatsApp
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
+</body>
+</html>
