@@ -113,7 +113,7 @@
             align-items: center;
             justify-content: center;
             background-color: var(--dark);
-            min-height: 350px;
+            min-height: 350px; /* Altura mínima para desktop */
         }
 
         .integrated-image {
@@ -122,6 +122,19 @@
             object-fit: cover;
             transition: all 0.4s ease-in-out;
             animation: visualHeartbeat 2.5s infinite; /* Efecto latido continuo */
+        }
+
+        /* AJUSTE CLAVE PARA CELULARES - MEDIA QUERY */
+        @media (max-width: 650px) {
+            .image-holder {
+                min-height: auto; /* Anulamos la altura mínima fija */
+                height: auto; /* Dejamos que la imagen dicte la altura */
+            }
+
+            .integrated-image {
+                height: auto; /* Permitimos que la altura de la imagen sea proporcional a su ancho */
+                object-fit: contain; /* Aseguramos que la imagen se vea completa dentro de su contenedor */
+            }
         }
 
         .image-holder:hover .integrated-image {
