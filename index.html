@@ -9,12 +9,18 @@
     
     <style>
         :root {
-            --primary-blue: #0b3c5d;
-            --secondary-blue: #328cc1;
-            --accent-green: #5cdb95;
-            --accent-orange: #ffb81c;
-            --light-bg: #f5f7fa;
-            --text-dark: #1d2731;
+            --primary: #f2ba13;
+            --primary-dark: #d4a20b;
+            --dark: #1e2229;
+            --light: #f4f6f9;
+            --white: #ffffff;
+            --text: #333333;
+            --text-muted: #666666;
+            --whatsapp: #25d366;
+            
+            /* Colores originales de marca conservados para acentos */
+            --macor-blue: #0b3c5d;
+            --macor-secondary: #328cc1;
         }
 
         * {
@@ -25,82 +31,202 @@
         }
 
         body {
-            background-color: var(--light-bg);
-            color: var(--text-dark);
+            background-color: var(--light);
+            color: var(--text);
             line-height: 1.6;
         }
 
+        /* --- ENCABEZADO ESTILIZADO CON LOGO --- */
         header {
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            color: white;
+            background: linear-gradient(135deg, #1e2229 0%, #2c323f 100%);
+            color: var(--white); 
             text-align: center;
-            padding: 2.5rem 1rem;
-            border-bottom: 5px solid var(--accent-green);
+            padding: 40px 20px 50px 20px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        /* Estilos del Logo Principal */
+        .header-logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 6px;
         }
 
         header h1 {
-            font-size: 2.2rem;
+            font-size: 2.8rem;
+            color: var(--primary);
             text-transform: uppercase;
+            margin-bottom: 10px;
             letter-spacing: 1px;
-            margin-bottom: 0.5rem;
         }
 
         header p {
-            font-size: 1.1rem;
+            font-size: 1.2rem; 
+            max-width: 700px; 
+            margin: 0 auto;
+            font-weight: 400;
             opacity: 0.9;
-            font-weight: 600;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        /* --- CONTENEDOR PRINCIPAL MIXTO --- */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
         }
 
-        @media (min-width: 768px) {
-            .container {
-                grid-template-columns: 1.2fr 1fr;
+        @media (max-width: 992px) {
+            .main-wrapper {
+                grid-template-columns: 1fr;
             }
         }
 
-        /* Sección de Vacantes y Beneficios */
-        .info-section {
-            background: white;
-            padding: 2rem;
+        /* --- SECCIÓN INTEGRADA: IMAGEN MACOR + REQUISITOS --- */
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 25px;
+            background-color: var(--white);
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 650px) {
+            .hero-split {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Contenedor interactivo de la imagen MACOR dentro del bloque */
+        .image-holder {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--dark);
+            min-height: 350px;
+        }
+
+        .integrated-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease-in-out;
+            animation: visualHeartbeat 2.5s infinite; /* Efecto latido continuo */
+        }
+
+        .image-holder:hover .integrated-image {
+            filter: blur(4px) brightness(0.8); /* Se difumina al pasar el cursor */
+            transform: scale(1.03);
+            animation-play-state: paused; /* Se pausa el latido al interactuar */
+        }
+
+        /* Texto flotante interactivo */
+        .image-holder::after {
+            content: "¡Envía tus datos ahora!";
+            position: absolute;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.2rem;
+            background-color: rgba(30, 34, 41, 0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            border: 1px solid var(--primary);
+        }
+
+        .image-holder:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes visualHeartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* Bloque de requisitos al lado de la imagen */
+        .info-side {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* --- TARJETAS DE CONTENIDO --- */
+        .card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            margin-bottom: 25px;
         }
 
         h2 {
-            color: var(--primary-blue);
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--accent-green);
-            padding-left: 10px;
-            font-size: 1.5rem;
+            color: var(--dark);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* ESTILOS NUEVOS PARA LA IMAGEN PUBLICITARIA */
-        .promo-image-container {
-            width: 100%;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border: 2px solid var(--light-bg);
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 24px;
+            background-color: var(--primary);
+            border-radius: 3px;
         }
 
-        .promo-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
+        /* Listas estilizadas */
+        ul {
+            list-style: none;
         }
 
+        ul li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 14px;
+            font-size: 1rem;
+        }
+
+        /* Iconos de check verdes */
+        .benefits-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Iconos de puntos amarillos */
+        .requisitos-list li::before {
+            content: "•";
+            position: absolute;
+            left: 5px;
+            color: var(--primary);
+            font-size: 1.8rem;
+            line-height: 0.9;
+            top: -2px;
+        }
+
+        /* Bloque de Vacantes */
         .vacante-card {
-            background: var(--light-bg);
+            background: var(--light);
             border: 1px solid #e1e8ed;
             border-radius: 8px;
             padding: 1.2rem;
@@ -112,7 +238,7 @@
 
         .vacante-info h3 {
             font-size: 1.1rem;
-            color: var(--primary-blue);
+            color: var(--macor-blue);
         }
 
         .vacante-info p {
@@ -121,8 +247,8 @@
         }
 
         .salary-tag {
-            background: var(--accent-green);
-            color: var(--primary-blue);
+            background: #28a745;
+            color: white;
             font-weight: 700;
             padding: 0.4rem 0.8rem;
             border-radius: 20px;
@@ -130,116 +256,153 @@
             white-space: nowrap;
         }
 
+        /* Distribución de prestaciones en rejilla */
         .beneficios-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
             margin-top: 1rem;
         }
 
         .beneficio-item {
             text-align: center;
-            padding: 1rem;
+            padding: 1.2rem;
             background: #fff8eb;
-            border: 1px solid var(--accent-orange);
+            border: 1px solid var(--primary);
             border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
         .beneficio-item i {
-            font-size: 1.5rem;
-            color: var(--accent-orange);
-            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.6rem;
         }
 
         .beneficio-item p {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
+            color: var(--dark);
         }
 
-        /* Formulario */
-        .form-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            position: relative;
+        /* --- COLUMNA LATERAL (BARRA FIJA) --- */
+        .sticky-sidebar {
+            position: sticky;
+            top: 20px;
         }
 
+        /* --- FORMULARIO DE POSTULACIÓN --- */
         .form-group {
-            margin-bottom: 1.2rem;
+            margin-bottom: 18px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.4rem;
+            margin-bottom: 6px;
             font-weight: 600;
             font-size: 0.9rem;
+            color: var(--dark);
         }
 
         .form-group input, .form-group select {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            transition: all 0.3s;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #fafafa;
+            transition: all 0.2s;
         }
 
         .form-group input:focus, .form-group select:focus {
             outline: none;
-            border-color: var(--secondary-blue);
-            box-shadow: 0 0 0 3px rgba(50, 140, 193, 0.2);
+            border-color: var(--primary);
+            background-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(242, 186, 19, 0.15);
         }
 
+        .uppercase-input {
+            text-transform: uppercase;
+        }
+
+        /* --- BOTÓN DE WHATSAPP INTEGRADO (ESTILO UNIFICADO) --- */
         .btn-whatsapp {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             width: 100%;
-            background-color: #25D366;
+            background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
             color: white;
+            padding: 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 22px;
             border: none;
-            padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+            transition: all 0.3s ease;
+            animation: buttonPulse 2s infinite;
         }
 
         .btn-whatsapp:hover {
-            background-color: #20ba5a;
+            background: linear-gradient(135deg, #22c35e 0%, #1b9f4d 100%);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
         }
 
-        .footer-note {
+        .btn-whatsapp i {
+            font-size: 1.5rem;
+        }
+
+        @keyframes buttonPulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* --- PIE DE PÁGINA --- */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
             text-align: center;
-            font-size: 0.75rem;
-            color: #888;
-            margin-top: 2rem;
-            padding: 1rem;
+            padding: 25px 20px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            border-top: 3px solid var(--primary);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Macor de México</h1>
-        <p><i class="fa-solid fa-gears"></i> Sector Metalmecánico • Monterrey, N.L.</p>
-    </header>
+<header>
+    <img src="imagen-logo.jpg" alt="Logo Principal" class="header-logo">
+    <h1>Macor de México</h1>
+    <p><i class="fa-solid fa-gears"></i> Sector Metalmecánico • Monterrey, N.L.</p>
+</header>
 
-    <div class="container">
+<div class="main-wrapper">
+    <main>
         
-        <div class="info-section">
-            
-            <div class="promo-image-container">
-                <img src="publicidad.jpg" alt="Convocatoria Macor de México" class="promo-image">
+        <div class="hero-split">
+            <div class="image-holder">
+                <img src="imagen-macor.jpg" alt="Convocatoria Macor de México" class="integrated-image">
             </div>
+            <div class="info-side">
+                <h2>Requisitos Generales</h2>
+                <ul class="requisitos-list">
+                    <li><strong>Género:</strong> Hombres.</li>
+                    <li><strong>Edad:</strong> 18 a 55 años.</li>
+                    <li><strong>Horarios:</strong> Turnos rotativos de 8 horas.</li>
+                    <li><strong>Evaluaciones:</strong> Se realizan exámenes médicos (no es necesario acudir en ayuno).</li>
+                </ul>
+            </div>
+        </div>
 
+        <section class="card">
             <h2><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h2>
-            <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #555;">Requisitos generales: Hombres de 18 a 55 años. Turnos rotativos de 8 horas. Se realizan exámenes médicos (no es necesario ayuno).</p>
             
             <div class="vacante-card">
                 <div class="vacante-info">
@@ -264,36 +427,40 @@
                 </div>
                 <div class="salary-tag">$500 - $600 / Día</div>
             </div>
+        </section>
 
-            <h2 style="margin-top: 2rem;"><i class="fa-solid fa-gift"></i> Beneficios y Prestaciones</h2>
+        <section class="card">
+            <h2><i class="fa-solid fa-gift"></i> Beneficios y Prestaciones</h2>
             <div class="beneficios-grid">
                 <div class="beneficio-item">
                     <i class="fa-solid fa-bus"></i>
                     <p>Apoyo Transporte</p>
-                    <span style="font-size: 0.8rem; font-weight: bold; color: var(--primary-blue);">$175 Diarios</span>
+                    <span style="font-size: 0.85rem; font-weight: bold; color: var(--macor-blue);">$175 Diarios</span>
                 </div>
                 <div class="beneficio-item">
                     <i class="fa-solid fa-hand-holding-dollar"></i>
                     <p>Bono Permanencia</p>
-                    <span style="font-size: 0.8rem; font-weight: bold; color: var(--primary-blue);">$3,000</span>
+                    <span style="font-size: 0.85rem; font-weight: bold; color: var(--macor-blue);">$3,000</span>
                 </div>
                 <div class="beneficio-item">
                     <i class="fa-solid fa-piggy-bank"></i>
                     <p>Fondo de Ahorro</p>
-                    <span style="font-size: 0.8rem; font-weight: bold; color: var(--primary-blue);">6.6%</span>
+                    <span style="font-size: 0.85rem; font-weight: bold; color: var(--macor-blue);">6.6%</span>
                 </div>
                 <div class="beneficio-item">
                     <i class="fa-solid fa-scale-balanced"></i>
                     <p>Prestaciones de Ley</p>
                 </div>
             </div>
-        </div>
+        </section>
+    </main>
 
-        <div class="form-section">
+    <aside class="sticky-sidebar">
+        <div class="card">
             <h2><i class="fa-solid fa-id-card"></i> Postúlate Aquí</h2>
-            <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: #555;">Completa tus datos para agendar una entrevista inmediatamente.</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Completa tus datos para agendar una entrevista inmediatamente.</p>
             
-            <form id="postulaForm">
+            <form id="postulaForm" onsubmit="event.preventDefault(); sendWhatsApp();">
                 <div class="form-group">
                     <label for="puesto">Puesto de Interés:</label>
                     <select id="puesto" required>
@@ -311,7 +478,7 @@
 
                 <div class="form-group">
                     <label for="curp">CURP:</label>
-                    <input type="text" id="curp" placeholder="18 caracteres" maxlength="18" style="text-transform: uppercase;" required>
+                    <input type="text" id="curp" placeholder="18 caracteres obligatorios" maxlength="18" minlength="18" class="uppercase-input" required>
                 </div>
 
                 <div class="form-group">
@@ -341,47 +508,58 @@
                 </div>
 
                 <button type="submit" class="btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Enviar Datos por WhatsApp
+                    <i class="fa-brands fa-whatsapp"></i> Agendar Entrevista por WhatsApp
                 </button>
             </form>
         </div>
-    </div>
+    </aside>
+</div>
 
-    <div class="footer-note">
-        <p>*Esta es una oferta de empleo real, sujeta a restricciones, disponibilidad y al perfil del candidato. Pago por medio de Santander y BanRegio. Semana desfasada.</p>
-    </div>
+<footer>
+    <p>© 2026 Reclutamiento Macor de México. Todos los derechos reservados.</p>
+    <p style="font-size: 0.8rem; margin-top: 6px; color: #aaa;">*Esta es una oferta de empleo real, sujeta a restricciones, disponibilidad y al perfil del candidato. Pago por medio de Santander y BanRegio. Semana desfasada.</p>
+</footer>
 
-    <script>
-        document.getElementById('postulaForm').addEventListener('submit', function(e) {
-            e.preventDefault(); 
+<script>
+function sendWhatsApp() {
+    // Número del reclutador obtenido del documento
+    const numeroReclutador = "526461974763";
 
-            // Número del reclutador obtenido del documento
-            const numeroReclutador = "526461974763"; 
+    // Recolección de los valores del formulario
+    const puesto = document.getElementById('puesto').value;
+    const nombre = document.getElementById('nombre').value.trim();
+    const curp = document.getElementById('curp').value.trim().toUpperCase();
+    const edad = document.getElementById('edad').value;
+    const escolaridad = document.getElementById('escolaridad').value;
+    const contacto = document.getElementById('contacto').value.trim();
+    const municipio = document.getElementById('municipio').value.trim();
 
-            // Recolección de los valores del formulario
-            const puesto = document.getElementById('puesto').value;
-            const nombre = document.getElementById('nombre').value;
-            const curp = document.getElementById('curp').value.toUpperCase();
-            const edad = document.getElementById('edad').value;
-            const escolaridad = document.getElementById('escolaridad').value;
-            const contacto = document.getElementById('contacto').value;
-            const municipio = document.getElementById('municipio').value;
+    // Validaciones obligatorias de campos y longitud de CURP
+    if(!puesto || !nombre || !curp || !edad || !escolaridad || !contacto || !municipio) {
+        alert("Por favor, completa todos los campos para agendar tu entrevista.");
+        return;
+    }
 
-            // Construcción del mensaje formateado para WhatsApp
-            const mensaje = `¡Hola! Me interesa la vacante de *${puesto}* en Macor de México. Aquí te comparto mis datos para agendar entrevista:%0A%0A` +
-                            `*Nombre:* ${nombre}%0A` +
-                            `*CURP:* ${curp}%0A` +
-                            `*Edad:* ${edad} años%0A` +
-                            `*Escolaridad:* ${escolaridad}%0A` +
-                            `*Contacto:* ${contacto}%0A` +
-                            `*Municipio:* ${municipio}`;
+    if(curp.length !== 18) {
+        alert("La CURP debe tener exactamente 18 caracteres.");
+        return;
+    }
 
-            // URL de la API de WhatsApp
-            const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroReclutador}&text=${mensaje}`;
+    // Construcción del mensaje formateado para WhatsApp
+    const mensaje = `¡Hola! Me interesa la vacante de *${puesto}* en Macor de México. Aquí te comparto mis datos para agendar entrevista:\n\n` +
+                    `• *Nombre:* ${nombre}\n` +
+                    `• *CURP:* ${curp}\n` +
+                    `• *Edad:* ${edad} años\n` +
+                    `• *Escolaridad:* ${escolaridad}\n` +
+                    `• *Contacto:* ${contacto}\n` +
+                    `• *Municipio:* ${municipio}`;
 
-            // Abrir la ventana de WhatsApp
-            window.open(urlWhatsApp, '_blank');
-        });
-    </script>
+    // URL de la API de WhatsApp
+    const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroReclutador}&text=${encodeURIComponent(mensaje)}`;
+
+    // Abrir la ventana de WhatsApp
+    window.open(urlWhatsApp, '_blank');
+}
+</script>
 </body>
 </html>
