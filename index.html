@@ -252,6 +252,24 @@
             top: -2px;
         }
 
+        /* Sublistas para horarios */
+        .horarios-sublist {
+            margin-top: 8px;
+            margin-left: -10px;
+        }
+
+        .horarios-sublist li {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: var(--text-muted);
+        }
+
+        .horarios-sublist li::before {
+            content: "➔" !important;
+            font-size: 0.8rem !important;
+            top: 2px !important;
+        }
+
         /* Bloque de Vacantes */
         .vacante-card {
             background: var(--light);
@@ -319,6 +337,25 @@
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--dark);
+        }
+
+        /* Botón de mapa dinámico */
+        .btn-mapa {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--macor-blue);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-mapa:hover {
+            background-color: #06263b;
         }
 
         /* --- COLUMNA LATERAL (BARRA FIJA) --- */
@@ -430,7 +467,14 @@
                 <ul class="requisitos-list">
                     <li><strong>Género:</strong> Hombres.</li>
                     <li><strong>Edad:</strong> 18 a 55 años.</li>
-                    <li><strong>Horarios:</strong> Turnos rotativos de 8 horas.</li>
+                    <li>
+                        <strong>Horarios:</strong> Turnos rotativos de 8 horas:
+                        <ul class="requisitos-list horarios-sublist">
+                            <li><strong>Día:</strong> 6:00 am a 2:30 pm (Lunes a Sábado)</li>
+                            <li><strong>Tarde:</strong> 2:30 pm a 10:30 pm (Lunes a Sábado)</li>
+                            <li><strong>Noche:</strong> 10:30 pm a 6:00 am (Inicia Domingo por la noche)</li>
+                        </ul>
+                    </li>
                     <li><strong>Evaluaciones:</strong> Se realizan exámenes médicos (no es necesario acudir en ayuno).</li>
                 </ul>
             </div>
@@ -487,6 +531,14 @@
                     <p>Prestaciones de Ley</p>
                 </div>
             </div>
+        </section>
+
+        <section class="card">
+            <h2><i class="fa-solid fa-location-dot"></i> Ubicación de la Empresa</h2>
+            <p style="margin-bottom: 15px;">Nos encontramos en la zona estratégica de Monterrey, Nuevo León. Puedes consultar la ubicación exacta y trazar tu ruta haciendo clic en el siguiente enlace:</p>
+            <a href="https://maps.app.goo.gl/i5TinEBptV4sxZJd6" target="_blank" class="btn-mapa">
+                <i class="fa-solid fa-map-location-dot"></i> Ver Ubicación en Google Maps
+            </a>
         </section>
     </main>
 
@@ -552,7 +604,7 @@
 
 <footer>
     <p>© 2026 Reclutamiento Macor de México. Todos los derechos reservados.</p>
-    <p style="font-size: 0.8rem; margin-top: 6px; color: #aaa;">*Esta es una oferta de empleo real, sujeta a restricciones, disponibilidad y al perfil del candidato. Pago por medio de Santander y BanRegio. Semana desfasada.</p>
+    <p style="font-size: 0.8rem; margin-top: 6px; color: #aaa;">*Esta es una oferta de empleo real, sujeta a restricciones, disponibilidad y al perfil del candidato. Pago mediante nómina Santander y BanRegio. Esquema de semana desfasada.</p>
 </footer>
 
 <script>
